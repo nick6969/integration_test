@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql-integration
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=integration
+    ports:
+      - "13306:3306"
