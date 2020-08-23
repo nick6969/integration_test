@@ -66,7 +66,7 @@ func connectAndMigrate() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = Migrate("file://migrations", database)
+	err = Migrate("file://migrate_test", database)
 	if err != nil {
 		return nil, err
 	}
