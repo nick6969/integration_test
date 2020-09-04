@@ -15,7 +15,7 @@ import (
 var db *Database
 const (
 	databaseName = "integration"
-	databaseHost = "mysql"
+	databaseHost = ""
 )
 
 func TestMain(m *testing.M) {
