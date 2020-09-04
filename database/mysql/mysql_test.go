@@ -15,6 +15,7 @@ import (
 var db *Database
 const (
 	databaseName = "integration"
+	databaseHost = ""
 )
 
 func TestMain(m *testing.M) {
@@ -53,14 +54,14 @@ func clean() {
 }
 
 func ping() error {
-	parameter := fmt.Sprintf("root:password@tcp(%s:13306)/?parseTime=true", os.Getenv("DATABASE_HOST"))
+	parameter := fmt.Sprintf("root:password@tcp(%s:3306)/?parseTime=true", databaseHost)
 	_, err := gorm.Open("mysql", parameter)
 	return err
 }
 
 func connectAndMigrate() (*gorm.DB, error) {
 
-	parameter := fmt.Sprintf("root:password@tcp(%s:13306)/%s?parseTime=true&multiStatements=true", os.Getenv("DATABASE_HOST"), databaseName)
+	parameter := fmt.Sprintf("root:password@tcp(%s:3306)/%s?parseTime=true&multiStatements=true", databaseHost, databaseName)
 	database, err := gorm.Open("mysql", parameter)
 	if err != nil {
 		return nil, err
