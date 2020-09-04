@@ -1,15 +1,5 @@
 image: docker:19.03.11
 
-
-services:
-  - name: mysql:8.0
-    alias: mysql
-
-variables:
-  MYSQL_DATABASE: "integration"
-  MYSQL_ROOT_PASSWORD: "password"
-
-
 stages:
   - test
 
@@ -26,6 +16,12 @@ unit_test:
   stage: test
   image: golang:1.15.0-alpine
   extends: .go-cache
+  services:
+    - name: mysql:8.0
+      alias: mysql
+  variables:
+    MYSQL_DATABASE: "integration"
+    MYSQL_ROOT_PASSWORD: "password"
   script:
     - cat /etc/hosts
     - if ! [ -d "./database/mysql/migrate_test" ]; then mkdir ./database/mysql/migrate_test; fi
