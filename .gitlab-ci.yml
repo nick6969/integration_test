@@ -1,5 +1,8 @@
 image: docker:19.03.11
 
+variables:
+   TEST: 1234
+
 stages:
   - test
 
